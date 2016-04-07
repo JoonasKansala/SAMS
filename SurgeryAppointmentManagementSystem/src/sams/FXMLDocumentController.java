@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    Button loginBtn, logoutBtn;
+    Button loginBtn, logoutBtn, searchBtn;
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException{
@@ -36,6 +36,14 @@ public class FXMLDocumentController implements Initializable {
         if(event.getSource() == logoutBtn) {
             stage = (Stage)logoutBtn.getScene().getWindow();
             stage.close();root = FXMLLoader.load(getClass().getResource("loginScreen.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        
+        if(event.getSource() == searchBtn) {
+            stage = (Stage)searchBtn.getScene().getWindow();
+            stage.close();root = FXMLLoader.load(getClass().getResource("SearchScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

@@ -28,5 +28,6 @@
       <Label layoutX="115.0" layoutY="55.0" prefHeight="35.0" prefWidth="37.0" text="TO DO" />
       <Label layoutX="928.0" layoutY="55.0" prefHeight="35.0" prefWidth="127.0" text="Appointments for today" />
       <Button fx:id="logoutBtn" layoutX="534.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Log out" />
+      <Button fx:id="searchBtn" layoutX="484.0" layoutY="229.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" onAction="#handleButtonAction" text="Search" />
    </children>
 </AnchorPane>

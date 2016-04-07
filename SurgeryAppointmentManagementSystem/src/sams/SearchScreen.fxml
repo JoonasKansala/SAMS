@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+
+<GridPane fx:controller="sams.FXMLSearchController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+
+    <Label text="Search:"
+        GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+ 
+    <TextField 
+        fx:id="searchText" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    
+    <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="2" GridPane.rowIndex="0">
+        <Button fx:id="goBtn" text="Go"     
+            onAction="#handleButtonSearch"/>
+    </HBox>
+
+    <Text fx:id="actiontarget"
+        GridPane.columnIndex="0" GridPane.columnSpan="2"
+        GridPane.halignment="RIGHT" GridPane.rowIndex="6"/>
+    
+</GridPane>
+
