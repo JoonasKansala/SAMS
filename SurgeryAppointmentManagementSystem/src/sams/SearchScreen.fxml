@@ -30,7 +30,7 @@
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Patients" />
                     <String fx:value="Summaries" />
-                    <String fx:value="Apointments" />
+                    <String fx:value="Appointment" />
                     <String fx:value="Conditions" />
                 </FXCollections>
             </items>
