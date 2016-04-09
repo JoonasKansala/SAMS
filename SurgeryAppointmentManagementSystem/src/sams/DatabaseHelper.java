@@ -1,8 +1,14 @@
+package sams;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public class DatabaseHelper {
@@ -152,5 +158,49 @@ public class DatabaseHelper {
    conn.close();
    }
    
-  
+   public static List search(String table, String keyword) throws SQLException{
+        Connection conn;
+        Statement stmt;
+        //PreparedStatement stmt = conn.prepareStatement("UPDATE user_table SET name=? WHERE id=?");
+        conn = getConnection();
+        stmt = conn.createStatement();
+        if (table.equals("Summaries")){
+            //wtf do i do (FUCK)
+            table = "APPOINTMENT";
+        }
+        String query[] ={"SELECT * FROM "+table+" where pName like '%"+ keyword + "%'", 
+                         "SELECT * FROM "+table+" where pSurname like '%"+ keyword + "%'",
+                         "SELECT * FROM "+table+" where pEmail like '%"+ keyword + "%'",
+                         "SELECT * FROM "+table+" where pAddress like '%"+ keyword + "%'"};
+        List results = new ArrayList<>();
+        for (String q: query) {
+           ResultSet rs = stmt.executeQuery(q);
+           //results.add(rs);
+           while(rs.next()) {
+                switch(table){
+                    case "Patients":
+                        Patient p = new Patient();
+                        p.setPName(rs.getString("pName"));
+                        p.setPSurname(rs.getString("pSurname"));
+                        p.setPEmail(rs.getString("pEmail"));
+                        p.setPAddress(rs.getString("pAddress"));
+                        p.setPMobPhone(rs.getString("pMobPhone"));
+                        results.add(p);
+                        break;
+                    case "Appointment":
+                        break;
+                    case "Conditions":
+                        break;
+                    case "Summaries":
+                        break;
+                }
+           }
+        }
+        Set<Patient> s = new HashSet<Patient>();
+        s.addAll(results);
+        results.clear();
+        results.addAll(s);
+        return results;
+
+   }
 }//end Surgapp

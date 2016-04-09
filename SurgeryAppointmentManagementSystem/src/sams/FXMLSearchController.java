@@ -3,23 +3,24 @@ package sams;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class FXMLSearchController implements Initializable {
@@ -78,8 +79,8 @@ public class FXMLSearchController implements Initializable {
                     columns.add(spName);
                     columns.add(summary);
                     
-                    spName.setCellValueFactory(new PropertyValueFactory<Summary, String>("pName"));
-                    summary.setCellValueFactory(new PropertyValueFactory<Summary, String>("aSummary"));
+                    //spName.setCellValueFactory(new PropertyValueFactory<Summary, String>("pName"));
+                    //summary.setCellValueFactory(new PropertyValueFactory<Summary, String>("aSummary"));
                     
                     tableViewSearch.getColumns().addAll(columns);
                     break;
@@ -92,9 +93,9 @@ public class FXMLSearchController implements Initializable {
                     columns.add(cDesc);
                     columns.add(tLevel);
                     
-                    cName.setCellValueFactory(new PropertyValueFactory<Condition, String>("cName"));
-                    cDesc.setCellValueFactory(new PropertyValueFactory<Condition, String>("cDesc"));
-                    tLevel.setCellValueFactory(new PropertyValueFactory<Condition, String>("cThreat_level"));
+                    //cName.setCellValueFactory(new PropertyValueFactory<Condition, String>("cName"));
+                    //cDesc.setCellValueFactory(new PropertyValueFactory<Condition, String>("cDesc"));
+                    //tLevel.setCellValueFactory(new PropertyValueFactory<Condition, String>("cThreat_level"));
                     
                     tableViewSearch.getColumns().addAll(columns);
                     break;
@@ -107,14 +108,24 @@ public class FXMLSearchController implements Initializable {
                     columns.add(aDate);
                     columns.add(aType);
                     
-                    apName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("pName"));
-                    aDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aDatetime"));
-                    aType.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aType"));
+                    //apName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("pName"));
+                    //aDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aDatetime"));
+                    //aType.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aType"));
                     
                     tableViewSearch.getColumns().addAll(columns);
                     break;
             }
+            List results = new ArrayList<>();
             //do search with keyword string
+            try{
+                results = DatabaseHelper.search(selectedTable, keyword);
+                tableViewSearch.getItems().setAll(results);
+            }
+            catch(SQLException e){
+                System.out.println(e);
+            }
+            
+            
             
             //actiontarget.setVisible(false);
             //stage = (Stage)goBtn.getScene().getWindow();
