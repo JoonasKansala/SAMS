@@ -1,6 +1,10 @@
 
 package sams;
 
+import sams.DataModels.Summary;
+import sams.DataModels.Condition;
+import sams.DataModels.Patient;
+import sams.DataModels.Appointment;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -79,8 +83,8 @@ public class FXMLSearchController implements Initializable {
                     columns.add(spName);
                     columns.add(summary);
                     
-                    //spName.setCellValueFactory(new PropertyValueFactory<Summary, String>("pName"));
-                    //summary.setCellValueFactory(new PropertyValueFactory<Summary, String>("aSummary"));
+                    spName.setCellValueFactory(new PropertyValueFactory<Summary, String>("pName"));
+                    summary.setCellValueFactory(new PropertyValueFactory<Summary, String>("aSummary"));
                     
                     tableViewSearch.getColumns().addAll(columns);
                     break;
@@ -93,9 +97,9 @@ public class FXMLSearchController implements Initializable {
                     columns.add(cDesc);
                     columns.add(tLevel);
                     
-                    //cName.setCellValueFactory(new PropertyValueFactory<Condition, String>("cName"));
-                    //cDesc.setCellValueFactory(new PropertyValueFactory<Condition, String>("cDesc"));
-                    //tLevel.setCellValueFactory(new PropertyValueFactory<Condition, String>("cThreat_level"));
+                    cName.setCellValueFactory(new PropertyValueFactory<Condition, String>("cName"));
+                    cDesc.setCellValueFactory(new PropertyValueFactory<Condition, String>("cDesc"));
+                    tLevel.setCellValueFactory(new PropertyValueFactory<Condition, String>("cThreat_level"));
                     
                     tableViewSearch.getColumns().addAll(columns);
                     break;
@@ -108,9 +112,9 @@ public class FXMLSearchController implements Initializable {
                     columns.add(aDate);
                     columns.add(aType);
                     
-                    //apName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("pName"));
-                    //aDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aDatetime"));
-                    //aType.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aType"));
+                    apName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("pName"));
+                    aDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aDatetime"));
+                    aType.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aType"));
                     
                     tableViewSearch.getColumns().addAll(columns);
                     break;

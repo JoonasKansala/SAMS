@@ -1,5 +1,6 @@
 package sams;
 
+import sams.DataModels.Patient;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import sams.DataModels.Appointment;
+import sams.DataModels.Condition;
+import sams.DataModels.Summary;
 
 
 public class DatabaseHelper {
@@ -164,14 +168,28 @@ public class DatabaseHelper {
         //PreparedStatement stmt = conn.prepareStatement("UPDATE user_table SET name=? WHERE id=?");
         conn = getConnection();
         stmt = conn.createStatement();
+        String query[] = null;
         if (table.equals("Summaries")){
-            //wtf do i do (FUCK)
-            table = "APPOINTMENT";
+            query = new String[]{"SELECT * FROM Appointment join Patients using (pId) where pName like '%"+ keyword + "%'", 
+                         "SELECT * FROM Appointment join Patients using (pId) where aSummary like '%"+ keyword + "%'"};
         }
-        String query[] ={"SELECT * FROM "+table+" where pName like '%"+ keyword + "%'", 
-                         "SELECT * FROM "+table+" where pSurname like '%"+ keyword + "%'",
-                         "SELECT * FROM "+table+" where pEmail like '%"+ keyword + "%'",
-                         "SELECT * FROM "+table+" where pAddress like '%"+ keyword + "%'"};
+        else if (table.equals("Patients")){
+            query = new String[]{"SELECT * FROM Patients where pName like '%"+ keyword + "%'", 
+                         "SELECT * FROM Patients where pSurname like '%"+ keyword + "%'",
+                         "SELECT * FROM Patients where pEmail like '%"+ keyword + "%'",
+                         "SELECT * FROM Patients where pAddress like '%"+ keyword + "%'"};
+        }
+        else if (table.equals("Appointment")){
+            query = new String[]{"SELECT * FROM Appointment join Patients using (pId) where aDatetime like '%"+ keyword + "%'", 
+                         "SELECT * FROM Appointment join Patients using (pId) where aType like '%"+ keyword + "%'",
+                         "SELECT * FROM Appointment join Patients using (pId) where pName like '%"+ keyword + "%'"};
+        }
+        else if (table.equals("Conditions")){
+            query = new String[]{"SELECT * FROM Conditions where cName like '%"+ keyword + "%'", 
+                         "SELECT * FROM Conditions where cDesc like '%"+ keyword + "%'",
+                         "SELECT * FROM Conditions where cThreat_level like '%"+ keyword + "%'"};
+        }
+        
         List results = new ArrayList<>();
         for (String q: query) {
            ResultSet rs = stmt.executeQuery(q);
@@ -188,15 +206,29 @@ public class DatabaseHelper {
                         results.add(p);
                         break;
                     case "Appointment":
+                        Appointment a = new Appointment();
+                        a.setApName(rs.getString("pName"));
+                        a.setADate(rs.getDate("aDatetime"));
+                        a.setAType(rs.getString("aType"));
+                        results.add(a);
                         break;
                     case "Conditions":
+                        Condition c = new Condition();
+                        c.setCName(rs.getString("cName"));
+                        c.setCDesc(rs.getString("cDesc"));
+                        c.setTLevel(rs.getString("cThreat_level"));
+                        results.add(c);
                         break;
                     case "Summaries":
+                        Summary s = new Summary();
+                        s.setSpName(rs.getString("pName"));
+                        s.setSummary(rs.getString("aSummary"));
+                        results.add(s);
                         break;
                 }
            }
         }
-        Set<Patient> s = new HashSet<Patient>();
+        Set s = new HashSet();
         s.addAll(results);
         results.clear();
         results.addAll(s);
