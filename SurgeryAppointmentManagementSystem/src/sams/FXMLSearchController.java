@@ -7,12 +7,13 @@ import sams.DataModels.Patient;
 import sams.DataModels.Appointment;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,9 +47,10 @@ public class FXMLSearchController implements Initializable {
         Parent root;
         
         if(event.getSource() == goBtn){
+            actiontarget.setText("Searching...");
             keyword = searchText.getText();
             selectedTable = (String) tableCombo.getSelectionModel().getSelectedItem();
-            actiontarget.setText("Searching...");
+            tableViewSearch.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             if(!tableViewSearch.getColumns().isEmpty()){
                 tableViewSearch.getColumns().removeAll(columns);
                 columns.removeAll(columns);
@@ -119,15 +121,31 @@ public class FXMLSearchController implements Initializable {
                     tableViewSearch.getColumns().addAll(columns);
                     break;
             }
-            List results = new ArrayList<>();
-            //do search with keyword string
-            try{
-                results = DatabaseHelper.search(selectedTable, keyword);
-                tableViewSearch.getItems().setAll(results);
+            
+            //do search with keyword string in a separate thread
+            Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                List results = new ArrayList<>();
+                try{
+                    results = DatabaseHelper.search(selectedTable, keyword);
+                    tableViewSearch.getItems().setAll(results);
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+                return null;
             }
-            catch(SQLException e){
-                System.out.println(e);
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                actiontarget.setText("Done");
             }
+        };
+        new Thread(task).start();
+            
+            
             
             
             
