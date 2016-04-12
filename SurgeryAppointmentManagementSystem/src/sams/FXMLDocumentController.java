@@ -10,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
@@ -25,6 +27,9 @@ public class FXMLDocumentController implements Initializable {
     Button homeThreeBtn;
     @FXML
     Button homeFourBtn;
+    
+    @FXML
+    TextField userName;
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException{
@@ -60,7 +65,7 @@ public class FXMLDocumentController implements Initializable {
         
         if(event.getSource() == homeOneBtn) {
             stage = (Stage)homeOneBtn.getScene().getWindow();
-            stage.close();root = FXMLLoader.load(getClass().getResource("dummy.fxml"));
+            stage.close();root = FXMLLoader.load(getClass().getResource("AddScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

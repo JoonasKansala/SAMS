@@ -1,9 +1,10 @@
+package sams;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
-
 
 public class DatabaseHelper {
  // JDBC driver name and database URL
@@ -11,8 +12,8 @@ public class DatabaseHelper {
    static final String DB_URL = "jdbc:mysql://localhost:3306/surgery";
 
    //  Database credentials
-   static final String USER = "turk";
-   static final String PASS = "turk";
+   static final String USER = "root";
+   static final String PASS = "root";
 
 
    public static Connection getConnection(){
