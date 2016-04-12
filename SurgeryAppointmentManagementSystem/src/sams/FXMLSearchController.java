@@ -12,18 +12,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 
@@ -33,18 +36,51 @@ public class FXMLSearchController implements Initializable {
     Collection<TableColumn> columns = new ArrayList<>();
     
     @FXML private Text actiontarget;
+    @FXML private Text name;
     @FXML private TextField searchText;
     @FXML private TableView tableViewSearch;
     @FXML private ComboBox tableCombo;
     @FXML Button goBtn;
+    @FXML Button backBtn;
     
     @FXML
     private void handleButtonSearch(ActionEvent event) throws IOException{
     
-        Stage stage;
+        //Stage stage;
         String keyword;
         String selectedTable;
-        Parent root;
+        //Parent root;
+        
+        tableViewSearch.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override 
+            public void handle(MouseEvent event) {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    Patient selectedPatient = (Patient) tableViewSearch.getSelectionModel().getSelectedItem(); 
+                    try{
+                        Stage stage = (Stage)goBtn.getScene().getWindow();
+                        Parent root = FXMLLoader.load(getClass().getResource("FXMLViewSearchResultDetails.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                        name.setText(selectedPatient.getPName());
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                    
+                    
+                    
+                }
+             }
+        });
+        
+        if(event.getSource() == backBtn){
+            Stage stage = (Stage)backBtn.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("AdminHome.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
         
         if(event.getSource() == goBtn){
             actiontarget.setText("Searching...");
