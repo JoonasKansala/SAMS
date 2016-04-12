@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="780.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sams.FXMLDocumentController">
-    <stylesheets>
-        <URL value="@loginscreen.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="780.0" styleClass="mainFxmlClass" stylesheets="@OverallStyle.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sams.FXMLDocumentController">
    <children>
-      <TabPane layoutX="13.0" layoutY="15.0" prefHeight="470.0" prefWidth="754.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="14.0" layoutY="15.0" prefHeight="470.0" prefWidth="754.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Appointment">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-opacity: 0.2;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="441.0" prefWidth="754.0" styleClass="tabAnchorPane">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets></AnchorPane>
@@ -25,32 +19,22 @@
           </Tab>
           <Tab text="Treatment">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" stylesheets="@OverallStyle.css" />
             </content>
           </Tab>
             <Tab text="Patient history">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" />
                </content>
             </Tab>
             <Tab text="Condition">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" />
                </content>
             </Tab>
             <Tab text="Patient">
                <content>
-                  <AnchorPane id="tab-section-background" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
-                     </effect></AnchorPane>
+                  <AnchorPane id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" stylesheets="@OverallStyle.css" />
                </content>
             </Tab>
         </tabs>
