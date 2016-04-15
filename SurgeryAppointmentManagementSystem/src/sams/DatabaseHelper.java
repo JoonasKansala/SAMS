@@ -110,18 +110,6 @@ public class DatabaseHelper {
       conn.close();
    }//end main
    
-   public static void insert(String table, String data) throws SQLException{
-   Connection conn;
-   Statement stmt;
-   conn = getConnection();
-   stmt = conn.createStatement();
-   
-   String sql = "insert into '"+table+"' values('"+data+"')";
-   stmt.executeUpdate(sql);
-   stmt.close();
-   conn.close();
-   }
-   
    public static int login(String username, String password) throws SQLException{
    Connection conn;
    Statement stmt;
@@ -153,5 +141,18 @@ public class DatabaseHelper {
    conn.close();
    }
    
+   //additional methods created by Joonas
+    void insertPatient(String name, String lastname, String homephone, String mobile, String email, String address, String sex, String dob) throws SQLException{
+    Connection conn;
+    Statement stmt;
+    conn = getConnection();
+    stmt = conn.createStatement();
+   
+    String sql = "insert into patients (pName, pSurname, pHomePhone, pMobPhone, pEmail, pAddress, pSex, pDOB) values('"+name+"', '"+lastname+"', '"+homephone+"', '"+mobile+"','"+email+"', '"+address+"', '"+sex+"', '"+dob+"')";
+    stmt.executeUpdate(sql);
+    stmt.close();
+    conn.close();
+ 
+   }
   
 }//end Surgapp

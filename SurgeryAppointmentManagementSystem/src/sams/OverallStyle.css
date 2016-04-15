@@ -33,6 +33,10 @@
 }
 
 .tabAnchorPane{
-    -fx-background-color: black;
-    -fx-opacity: 0.5;
+    -fx-background-color: rgba(0,0,0,0.6);
+}
+
+.label {
+    -fx-font-family: "Arial";
+    -fx-text-fill: white;
 }

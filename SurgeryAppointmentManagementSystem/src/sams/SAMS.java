@@ -16,7 +16,7 @@ public class SAMS extends Application {
         
         Scene scene = new Scene(root);
         
-        scene.getStylesheets().add(SAMS.class.getResource("loginscreen.css").toExternalForm());
+        scene.getStylesheets().add(SAMS.class.getResource("OverallStyle.css").toExternalForm());
         
         stage.setScene(scene);
         stage.show();
