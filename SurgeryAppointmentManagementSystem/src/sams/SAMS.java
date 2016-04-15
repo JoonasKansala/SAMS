@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 
 public class SAMS extends Application {
+    public static String loggedUser= null;
+    public static String loggedPrivileges= null;
     
     @Override
     public void start(Stage stage) throws Exception {

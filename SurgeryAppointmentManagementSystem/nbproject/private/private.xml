@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Java/SAMS/SurgeryAppointmentManagementSystem/src/sams/AddScreenController.java</file>
-            <file>file:/E:/Java/SAMS/SurgeryAppointmentManagementSystem/src/sams/FXMLDocumentController.java</file>
-            <file>file:/E:/Java/SAMS/SurgeryAppointmentManagementSystem/src/sams/SAMS.java</file>
-            <file>file:/E:/Java/SAMS/SurgeryAppointmentManagementSystem/src/sams/DatabaseHelper.java</file>
+            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/AdminHome.fxml</file>
+            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/DatabaseHelper.java</file>
+            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/SAMS.java</file>
+            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/loginScreen.fxml</file>
+            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/FXMLDocumentController.java</file>
         </group>
     </open-files>
 </project-private>
