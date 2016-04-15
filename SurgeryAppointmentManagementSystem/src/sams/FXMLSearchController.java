@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,6 +28,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 
@@ -36,7 +38,6 @@ public class FXMLSearchController implements Initializable {
     Collection<TableColumn> columns = new ArrayList<>();
     
     @FXML private Text actiontarget;
-    @FXML private Text name;
     @FXML private TextField searchText;
     @FXML private TableView tableViewSearch;
     @FXML private ComboBox tableCombo;
@@ -57,19 +58,24 @@ public class FXMLSearchController implements Initializable {
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     Patient selectedPatient = (Patient) tableViewSearch.getSelectionModel().getSelectedItem(); 
                     try{
-                        Stage stage = (Stage)goBtn.getScene().getWindow();
-                        Parent root = FXMLLoader.load(getClass().getResource("FXMLViewSearchResultDetails.fxml"));
+                        Stage stage = (Stage)tableViewSearch.getScene().getWindow();
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sams/FXMLViewSearchResultDetails.fxml"));
+                        Parent root = fxmlLoader.load();
+                        ViewSearchDetailsController controller = fxmlLoader.<ViewSearchDetailsController>getController();
+                        controller.setName(selectedPatient.getPName());
+                        
+                        
+
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
-                        name.setText(selectedPatient.getPName());
                     }
                     catch(Exception e){
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                     
                     
-                    
+                //name.setText(selectedPatient.getPName());    
                 }
              }
         });
