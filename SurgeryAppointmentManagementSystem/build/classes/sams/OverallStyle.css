@@ -1,0 +1,42 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-image: url("background.jpg");
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+.tab {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-opacity: 0.6;
+
+}
+.tab:selected {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    -fx-opacity: 1;
+}
+
+.tabAnchorPane{
+    -fx-background-color: rgba(0,0,0,0.6);
+}
+
+.label {
+    -fx-font-family: "Arial";
+    -fx-text-fill: white;
+}
